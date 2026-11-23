@@ -1,0 +1,125 @@
+/* =============================================================
+   badriyahs.com — the same look as the old Cargo page:
+   white, IBM Plex Mono, the two names at the top,
+   the text in a column set in from the left.
+
+   Sizes are in rem. 1rem grows with the window (0.9% of its
+   width), so the whole page scales like it did on Cargo.
+   ============================================================= */
+
+:root {
+  --ink:  rgba(0, 0, 0, 0.85);         /* text */
+  --edge: 2.5rem;                      /* space around the page */
+}
+
+* { box-sizing: border-box; }
+
+html {
+  font-size: max(9px, 0.9vw);
+  background: #fff;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  padding: var(--edge);
+  background: #fff;
+  color: var(--ink);
+  font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  font-size: 1.7rem;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+b { font-weight: 700; }
+
+/* ---------- the two names ----------
+   english on the left, arabic on the right and a little lower,
+   like on Cargo (arabic 1.34 times bigger). The arabic is in
+   IBM Plex Sans Arabic, the arabic side of the same type family. */
+
+.names {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.names a { color: #000; white-space: nowrap; }
+.names .latin { margin-top: 4.44rem; }
+.names .arabic {
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+  margin-left: auto;
+  margin-top: 7.85rem;
+  font-size: 2.278rem;
+}
+
+/* ---------- the text ----------
+   One blank line between paragraphs, like on Cargo. */
+
+main {
+  width: 56rem;
+  max-width: 100%;
+  margin: 13.82rem 0 0 calc(15.1rem - var(--edge));
+}
+main p { margin: 0 0 1.4em; }
+
+.email {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+/* ---------- the two websites, at the foot of the page ----------
+   label, icon, address, lined up with the text column.
+   The icon turns slowly under the mouse. */
+
+.sites {
+  display: flex;
+  gap: 8rem;
+  margin: auto 0 0 calc(15.1rem - var(--edge));
+  padding-top: 4rem;
+}
+.sites a {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+.sites img {
+  display: block;
+  width: 5.5rem;
+  height: 5.5rem;
+  object-fit: contain;
+}
+.sites .site {
+  font-size: 1.3rem;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+@keyframes turn { to { transform: rotate(360deg); } }
+.sites a:hover img,
+.sites a:focus-visible img { animation: turn 12s linear infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .sites a:hover img,
+  .sites a:focus-visible img { animation: none; }
+}
+
+/* ---------- phones ---------- */
+
+@media (max-width: 768px) {
+  :root { --edge: 22px; }
+  html { font-size: 9px; }
+  body { font-size: 15px; padding: 22px 22px 32px; }
+  .names .latin { margin-top: 28px; }
+  .names .arabic { font-size: 22px; margin-top: 64px; }
+  main { width: auto; margin: 200px 0 0; }
+  .sites { gap: 22px; padding-top: 40px; margin-left: 0; }
+  .sites a { flex: 1 1 0; }
+  .sites img { width: 56px; height: 56px; }
+  .sites .site { font-size: 12px; }
+}
